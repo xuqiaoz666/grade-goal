@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grade Goal</title>
-    <script type="module" crossorigin src="/grade-goal/assets/index-CQctrRsb.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-Bbmv3kpm.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-BDZOThPI.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-4PFLpoQU.css">
   </head>
   <body>
     <header class="app-header">
@@ -25,6 +25,42 @@
     </header>
 
     <main id="grades-page" class="page">
+      <section id="start-guide" class="card start-guide" aria-labelledby="start-guide-heading" hidden>
+        <div class="start-guide-head">
+          <div>
+            <h2 id="start-guide-heading">Start here</h2>
+            <p class="hint">Three steps to see what you need on the rest of a course.</p>
+          </div>
+          <button id="start-guide-hide" type="button" class="row-link">Hide this guide</button>
+        </div>
+        <ol class="start-steps">
+          <li data-step="course">
+            <span class="step-mark" aria-hidden="true">1</span>
+            <div>
+              <button type="button" class="step-title">Pick your course.</button>
+              <p class="step-hint">Search, like "CS 124". Picking one fills in its credit hours.</p>
+              <span class="step-status visually-hidden"></span>
+            </div>
+          </li>
+          <li data-step="breakdown">
+            <span class="step-mark" aria-hidden="true">2</span>
+            <div>
+              <button type="button" class="step-title">Copy the grading breakdown from your syllabus.</button>
+              <p class="step-hint">Each category and its weight, like Homework 20%. They should add up to 100%.</p>
+              <span class="step-status visually-hidden"></span>
+            </div>
+          </li>
+          <li data-step="score">
+            <span class="step-mark" aria-hidden="true">3</span>
+            <div>
+              <button type="button" class="step-title">Enter a score you already have.</button>
+              <p class="step-hint">Then you'll see what you need on the rest of the course.</p>
+              <span class="step-status visually-hidden"></span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
       <section class="stage" aria-labelledby="overview-heading">
         <h2 id="overview-heading" class="stage-eyebrow">This semester</h2>
         <p id="stage-headline" class="stage-headline"></p>
