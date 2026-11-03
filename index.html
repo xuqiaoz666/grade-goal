@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade Goal</title>
+    <script type="module" crossorigin src="/grade-goal/assets/index-BNAPdyXH.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-fShB0fy1.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">G</span>
+        <div>
+          <h1>Grade Goal</h1>
+          <p>Your GPA, and what you need on the rest of each course.</p>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Pages">
+        <a href="#grades" data-page="grades">Grades</a>
+        <a href="#upcoming" data-page="upcoming">Upcoming</a>
+        <a href="#whatif" data-page="whatif">What if</a>
+        <a href="#history" data-page="history">History</a>
+      </nav>
+    </header>
+
+    <main id="grades-page" class="page">
+      <section class="stage" aria-labelledby="overview-heading">
+        <h2 id="overview-heading" class="stage-eyebrow">This semester</h2>
+        <p id="stage-headline" class="stage-headline"></p>
+        <p id="stage-detail" class="stage-detail"></p>
+        <div class="stage-numbers">
+          <div class="stage-number">
+            <span id="gpa-current" class="stage-value"></span>
+            <span class="stage-label">GPA so far</span>
+            <span id="gpa-current-note" class="stage-note"></span>
+          </div>
+          <div class="stage-number goal">
+            <span id="gpa-goal" class="stage-value"></span>
+            <span class="stage-label">GPA if I hit my goals</span>
+            <span id="gpa-goal-note" class="stage-note"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card overview" aria-labelledby="courses-heading">
+        <div class="overview-head">
+          <h2 id="courses-heading">Your courses</h2>
+          <button id="add-course" type="button" class="primary-button">+ Add course</button>
+        </div>
+
+        <table class="course-table">
+          <thead>
+            <tr>
+              <th scope="col">Course</th>
+              <th scope="col">Credits</th>
+              <th scope="col">Grade so far</th>
+              <th scope="col">Goal</th>
+              <th scope="col">Needed on remaining work</th>
+            </tr>
+          </thead>
+          <tbody id="course-rows"></tbody>
+        </table>
+        <p class="hint">Select a course to edit it below.</p>
+
+        <div class="past">
+          <div id="overall-tiles" class="gpa-tiles" hidden>
+            <div class="gpa-tile">
+              <span class="gpa-label">Overall GPA so far</span>
+              <span id="overall-current" class="gpa-value"></span>
+            </div>
+            <div class="gpa-tile goal">
+              <span class="gpa-label">Overall GPA if I hit my goals</span>
+              <span id="overall-goal" class="gpa-value"></span>
+            </div>
+          </div>
+          <p class="hint"><span id="overall-note"></span> <a href="#history">Open History</a></p>
+        </div>
+      </section>
+
+      <section class="card advice" aria-labelledby="advice-heading">
+        <div class="advice-head">
+          <div>
+            <h2 id="advice-heading">Raise your GPA</h2>
+            <p class="hint">How your GPA so far compares with your target, and the easiest ways to lift it.</p>
+          </div>
+          <label class="target-picker">
+            <span>My target GPA</span>
+            <input id="target-gpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" />
+          </label>
+        </div>
+        <p id="advice-status" class="advice-status" role="status" aria-live="polite"></p>
+        <div id="advice-plan"></div>
+        <div id="advice-weak"></div>
+      </section>
+
+      <div class="layout">
+        <section class="card" aria-labelledby="breakdown-heading">
+          <div class="course-fields">
+            <div class="course-search">
+              <label class="course-name">
+                <span>Course</span>
+                <input id="course-name" type="text" placeholder="Search, e.g. CS 124" maxlength="60" autocomplete="off" />
+              </label>
+              <ul id="course-suggestions" class="suggestions" hidden></ul>
+            </div>
+            <label class="course-credits">
+              <span>Credits</span>
+              <input id="course-credits" type="number" inputmode="decimal" min="0" max="10" step="any" />
+            </label>
+            <label class="course-syllabus">
+              <span>Syllabus link</span>
+              <input
+                id="course-syllabus"
+                type="url"
+                inputmode="url"
+                placeholder="Paste the course website or syllabus PDF link"
+                maxlength="500"
+                autocomplete="off"
+                spellcheck="false"
+                aria-describedby="syllabus-error"
+              />
+              <span id="syllabus-error" class="field-error" role="alert"></span>
+            </label>
+            <button id="delete-course" type="button" class="delete-button">Delete course</button>
+          </div>
+
+          <h2 id="breakdown-heading">Grading breakdown</h2>
+          <p class="hint">
+            Copy each category and its weight from the syllabus. Leave the score blank until it's graded.
+            Dates are optional and feed the Upcoming page.
+          </p>
+
+          <table class="categories">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Score</th>
+                <th scope="col">Test date</th>
+                <th scope="col"><span class="visually-hidden">Remove</span></th>
+              </tr>
+            </thead>
+            <tbody id="category-rows"></tbody>
+          </table>
+          <button id="add-category" type="button" class="add-button">+ Add category</button>
+          <p id="weight-total" class="weight-total" role="status"></p>
+
+          <details class="cutoffs">
+            <summary>Grade cutoffs</summary>
+            <p class="hint">The lowest course percentage for each letter. Change these to match your syllabus.</p>
+            <div id="cutoff-grid" class="cutoff-grid"></div>
+          </details>
+        </section>
+
+        <section class="card result-card" aria-labelledby="goal-heading">
+          <h2 id="goal-heading">Your goal</h2>
+          <label class="goal-picker">
+            <span>I want at least</span>
+            <select id="goal-letter"></select>
+          </label>
+
+          <div id="result" class="result" role="status" aria-live="polite"></div>
+          <p id="standing" class="standing"></p>
+
+          <details id="glance" class="glance-details" hidden>
+            <summary>Every grade at a glance</summary>
+            <table class="glance">
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Needed on remaining work</th>
+                </tr>
+              </thead>
+              <tbody id="glance-rows"></tbody>
+            </table>
+          </details>
+        </section>
+      </div>
+
+      <section class="card" aria-labelledby="trend-heading">
+        <h2 id="trend-heading">Grade over time</h2>
+        <p class="hint">
+          Your course grade after each graded item, in the order listed above. The dashed step shows where you
+          finish if you hit the score you need.
+        </p>
+        <div id="course-chart" class="line-chart"></div>
+        <div id="course-chart-empty" class="empty-state" hidden>
+          <p><strong>No scores yet.</strong></p>
+          <p>Enter a score above and your trend line starts here.</p>
+        </div>
+      </section>
+    </main>
+
+    <main id="upcoming-page" class="page" hidden>
+      <section class="card" aria-labelledby="upcoming-heading">
+        <h2 id="upcoming-heading">Upcoming tests</h2>
+        <p class="hint">
+          Every dated test from all your courses, soonest first. "Add to calendar" saves an event with alerts one
+          week and one day before; open the downloaded file to add it to Calendar.
+        </p>
+        <ol id="upcoming-list" class="test-list"></ol>
+        <div id="upcoming-empty" class="empty-state" hidden>
+          <p><strong>No upcoming tests yet.</strong></p>
+          <p>On the <a href="#grades">Grades page</a>, give a test like "Midterm 2" a date and it will show up here.</p>
+        </div>
+        <p id="calendar-status" class="calendar-status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="awaiting-section" class="card" aria-labelledby="awaiting-heading" hidden>
+        <h2 id="awaiting-heading">Waiting for a score</h2>
+        <p class="hint">These tests have passed. Enter your score when you get it back.</p>
+        <ol id="awaiting-list" class="test-list"></ol>
+      </section>
+    </main>
+
+    <main id="whatif-page" class="page" hidden>
+      <section class="card" aria-labelledby="whatif-heading">
+        <div class="whatif-head">
+          <div>
+            <h2 id="whatif-heading">What if</h2>
+            <p class="hint">
+              Type pretend scores for tests and homework that aren't graded yet, in two scenarios, and compare them.
+              Your saved grades never change, and pretend scores clear when you reload. Blank counts as not graded yet.
+            </p>
+          </div>
+          <button id="whatif-clear" type="button" class="secondary-button">Clear pretend scores</button>
+        </div>
+        <div id="whatif-summary" class="whatif-summary" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="card" aria-label="Pretend scores">
+        <table id="whatif-table" class="whatif-table">
+          <thead>
+            <tr>
+              <th scope="col">Not graded yet</th>
+              <th scope="col">Scenario A</th>
+              <th scope="col">Scenario B</th>
+            </tr>
+          </thead>
+          <tbody id="whatif-rows"></tbody>
+        </table>
+        <div id="whatif-empty" class="empty-state" hidden>
+          <p><strong>Nothing left to grade.</strong></p>
+          <p>On the <a href="#grades">Grades page</a>, add the tests and homework still to come, with their weights.</p>
+        </div>
+      </section>
+    </main>
+
+    <main id="history-page" class="page" hidden>
+      <section class="card" aria-labelledby="chart-heading">
+        <div class="chart-head">
+          <div>
+            <h2 id="chart-heading">GPA over time</h2>
+            <p class="hint">Each semester's GPA, and your overall GPA after it. This semester is at the end.</p>
+          </div>
+          <div class="chart-legend" aria-hidden="true">
+            <span class="legend-item"><span class="legend-key series-1"></span>Semester GPA</span>
+            <span class="legend-item"><span class="legend-key series-2"></span>Overall GPA</span>
+            <span class="legend-item"><span class="legend-key projected"></span>If I hit my goals</span>
+          </div>
+        </div>
+        <div id="gpa-chart" class="line-chart"></div>
+        <div id="chart-empty" class="empty-state" hidden>
+          <p><strong>No GPA history yet.</strong></p>
+          <p>Add a past semester below, or enter scores on the <a href="#grades">Grades page</a>.</p>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="semesters-heading">
+        <h2 id="semesters-heading">Past semesters</h2>
+        <p class="hint">Copy each finished semester from your transcript, oldest first.</p>
+        <table class="semester-table">
+          <thead>
+            <tr>
+              <th scope="col">Semester</th>
+              <th scope="col">GPA</th>
+              <th scope="col">Credit hours</th>
+              <th scope="col"><span class="visually-hidden">Remove</span></th>
+            </tr>
+          </thead>
+          <tbody id="semester-rows"></tbody>
+        </table>
+        <form id="add-semester" class="add-semester" novalidate>
+          <input id="new-semester-name" type="text" placeholder="e.g. Fall 2025" maxlength="40" aria-label="New semester name" />
+          <input id="new-semester-gpa" type="number" inputmode="decimal" min="0" max="4" step="any" placeholder="GPA" aria-label="New semester GPA" />
+          <input id="new-semester-credits" type="number" inputmode="decimal" min="0" max="40" step="any" placeholder="Credits" aria-label="New semester credit hours" />
+          <button type="submit" class="primary-button">Add semester</button>
+        </form>
+        <p id="semester-error" class="form-error" role="alert"></p>
+        <p id="history-summary" class="history-summary"></p>
+      </section>
+    </main>
+
+    <dialog id="description-window" class="description-window" aria-labelledby="description-heading">
+      <div class="description-window-content">
+        <header class="description-window-header">
+          <div>
+            <h2 id="description-heading"></h2>
+            <p id="description-title" class="description-title"></p>
+          </div>
+          <button id="description-close" type="button" class="description-close" aria-label="Close description">×</button>
+        </header>
+        <div id="description-body" class="description-body"></div>
+      </div>
+    </dialog>
+
+    <div id="undo-toast" class="toast" role="status" aria-live="polite" hidden>
+      <span id="undo-message"></span>
+      <button id="undo-button" type="button">Undo</button>
+    </div>
+
+    <footer class="app-footer">
+      <span id="save-status"></span>
+    </footer>
+
+  </body>
+</html>
