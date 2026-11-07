@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grade Goal</title>
-    <script type="module" crossorigin src="/grade-goal/assets/index-zwN_nVch.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-txjVCoW_.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-45z7rqk0.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CvXE3cFZ.css">
   </head>
   <body>
     <header class="app-header">
@@ -100,6 +100,17 @@
         <p class="hint">Select a course to edit it below.</p>
 
         <div class="past">
+          <div id="technical-tiles" class="gpa-tiles" hidden>
+            <div class="gpa-tile">
+              <span class="gpa-label">Technical GPA so far</span>
+              <span id="technical-current" class="gpa-value"></span>
+            </div>
+            <div class="gpa-tile goal">
+              <span class="gpa-label">Technical GPA if I hit my goals</span>
+              <span id="technical-goal" class="gpa-value"></span>
+            </div>
+          </div>
+          <p id="technical-note" class="hint technical-note"></p>
           <div id="overall-tiles" class="gpa-tiles" hidden>
             <div class="gpa-tile">
               <span class="gpa-label">Overall GPA so far</span>
@@ -143,6 +154,10 @@
             <label class="course-credits">
               <span>Credits</span>
               <input id="course-credits" type="number" inputmode="decimal" min="0" max="10" step="any" />
+            </label>
+            <label class="course-technical">
+              <input id="course-technical" type="checkbox" />
+              <span>Counts toward technical GPA</span>
             </label>
             <label class="course-syllabus">
               <span>Syllabus link</span>
