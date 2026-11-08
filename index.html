@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grade Goal</title>
-    <script type="module" crossorigin src="/grade-goal/assets/index-45z7rqk0.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CvXE3cFZ.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-CQ9jyPCf.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CQQJkfRZ.css">
   </head>
   <body>
     <header class="app-header">
@@ -240,6 +240,25 @@
           <p><strong>No scores yet.</strong></p>
           <p>Enter a score above and your trend line starts here.</p>
         </div>
+      </section>
+
+      <section id="backup" class="card backup" aria-labelledby="backup-heading">
+        <div class="backup-head">
+          <div>
+            <h2 id="backup-heading">Back up your grades</h2>
+            <p class="hint">
+              Your grades are saved only in this browser. Save a backup file now and then, and keep it somewhere safe,
+              like a private GitHub repository. Restoring replaces the grades on this device with the ones in the file.
+            </p>
+          </div>
+          <div class="backup-actions">
+            <button id="save-backup" type="button" class="primary-button">Save backup</button>
+            <button id="restore-backup" type="button" class="secondary-button">Restore from file</button>
+            <input id="restore-file" type="file" hidden />
+          </div>
+        </div>
+        <p id="backup-last" class="hint backup-last"></p>
+        <p id="backup-status" class="backup-status" role="status" aria-live="polite"></p>
       </section>
     </main>
 
