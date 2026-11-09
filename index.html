@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0b0b0b" media="(prefers-color-scheme: dark)" />
     <title>Grade Goal</title>
-    <script type="module" crossorigin src="/grade-goal/assets/index-BH7jI1fm.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CLEknESh.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-wh5L2G9q.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-hi9fIAD5.css">
   </head>
   <body>
     <header class="app-header">
@@ -203,9 +203,27 @@
           <button id="add-category" type="button" class="add-button">+ Add category</button>
           <p id="weight-total" class="weight-total" role="status"></p>
 
+          <div class="course-bonus">
+            <label for="course-bonus">Bonus on the final grade</label>
+            <span class="course-bonus-field">
+              <span aria-hidden="true">+</span>
+              <span class="with-unit">
+                <input id="course-bonus" type="number" inputmode="decimal" min="0" max="20" step="any" placeholder="0" aria-describedby="course-bonus-hint" />
+                <span aria-hidden="true">%</span>
+              </span>
+            </span>
+            <p id="course-bonus-hint" class="hint">
+              Extra credit added to the whole course grade, like +2% for course surveys. A curve on one test goes
+              under its score.
+            </p>
+          </div>
+
           <details class="cutoffs">
-            <summary>Grade cutoffs</summary>
-            <p class="hint">The lowest course percentage for each letter. Change these to match your syllabus.</p>
+            <summary>Grade cutoffs and course curve</summary>
+            <p class="hint">
+              The lowest course percentage for each letter. Change these to match your syllabus, or lower them if
+              the whole course is curved, like A- at 88 instead of 90.
+            </p>
             <div id="cutoff-grid" class="cutoff-grid"></div>
           </details>
 
