@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-BmiCS_uJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CBA5YLoe.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-wqlscDtl.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-B0NtQddX.css">
   </head>
   <body>
     <header class="app-header">
@@ -32,6 +32,7 @@
         <nav class="tabs" aria-label="Pages">
           <a href="#grades" data-page="grades">Grades</a>
           <a href="#upcoming" data-page="upcoming">Upcoming</a>
+          <a href="#plan" data-page="plan">Plan</a>
           <a href="#whatif" data-page="whatif">What if</a>
           <a href="#history" data-page="history">History</a>
         </nav>
@@ -301,6 +302,30 @@
         <h2 id="awaiting-heading">Waiting for a score</h2>
         <p class="hint">These tests have passed. Enter your score when you get it back.</p>
         <ol id="awaiting-list" class="test-list"></ol>
+      </section>
+    </main>
+
+    <main id="plan-page" class="page" hidden>
+      <section class="card" aria-labelledby="plan-heading">
+        <div class="plan-head">
+          <div>
+            <h2 id="plan-heading">Study plan</h2>
+            <p class="hint">
+              The next 7 days, in half-hour blocks. A course gets more time when a test is coming up or its grade
+              needs a high score to reach your goal, and less once the goal is already sure.
+            </p>
+          </div>
+          <label class="target-picker plan-hours">
+            <span>Hours a day</span>
+            <input id="study-hours" type="number" inputmode="decimal" min="0.5" max="16" step="0.5" aria-describedby="study-hours-error" />
+          </label>
+        </div>
+        <p id="study-hours-error" class="field-error" role="alert"></p>
+        <ol id="study-days" class="study-days"></ol>
+        <div id="plan-empty" class="empty-state" hidden>
+          <p><strong>Nothing to plan yet.</strong></p>
+          <p>On the <a href="#grades">Grades page</a>, add a course with work still to come, and its study time shows up here.</p>
+        </div>
       </section>
     </main>
 
