@@ -4,11 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f5f5" />
     <title>Grade Goal</title>
-    <script type="module" crossorigin src="/grade-goal/assets/index-wh5L2G9q.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-hi9fIAD5.css">
+    <script>
+      // Pick light or dark before the page draws, so it never flashes the wrong mode (src/theme.ts does the rest).
+      try {
+        const saved = localStorage.getItem("grade-goal:theme");
+        const deviceDark = matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : deviceDark ? "dark" : "light";
+      } catch {
+        // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
+      }
+    </script>
+    <script type="module" crossorigin src="/grade-goal/assets/index-BmiCS_uJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CBA5YLoe.css">
   </head>
   <body>
     <header class="app-header">
@@ -19,12 +28,15 @@
           <p>Your GPA, and what you need on the rest of each course.</p>
         </div>
       </div>
-      <nav class="tabs" aria-label="Pages">
-        <a href="#grades" data-page="grades">Grades</a>
-        <a href="#upcoming" data-page="upcoming">Upcoming</a>
-        <a href="#whatif" data-page="whatif">What if</a>
-        <a href="#history" data-page="history">History</a>
-      </nav>
+      <div class="header-controls">
+        <nav class="tabs" aria-label="Pages">
+          <a href="#grades" data-page="grades">Grades</a>
+          <a href="#upcoming" data-page="upcoming">Upcoming</a>
+          <a href="#whatif" data-page="whatif">What if</a>
+          <a href="#history" data-page="history">History</a>
+        </nav>
+        <button id="theme-switch" type="button" class="theme-switch" aria-label="Switch to dark mode"></button>
+      </div>
     </header>
 
     <main id="grades-page" class="page">
