@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-CGdpJ7-w.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-B0NtQddX.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-DH_duud1.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CiFcZHaA.css">
   </head>
   <body>
     <header class="app-header">
@@ -41,6 +41,14 @@
     </header>
 
     <main id="grades-page" class="page">
+      <section id="storage-warning" class="card storage-warning" role="alert" hidden>
+        <p><strong>Your saved grades couldn't be read, so the app started fresh.</strong></p>
+        <p>
+          Nothing was deleted: the old data is kept in this browser. Restore a backup on the
+          <a href="#history">History page</a> to get your grades back, or save a copy of the old data so it can be fixed.
+        </p>
+        <button id="save-unreadable" type="button" class="secondary-button">Save a copy of the old data</button>
+      </section>
       <section id="start-guide" class="card start-guide" aria-labelledby="start-guide-heading" hidden>
         <div class="start-guide-head">
           <div>
