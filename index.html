@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-BLxpFMKK.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-D5JF22f0.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-CfbLsLa5.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-BYpYTKc4.css">
   </head>
   <body>
     <header class="app-header">
@@ -149,24 +149,34 @@
         </div>
       </section>
 
-      <section class="card advice" aria-labelledby="advice-heading">
-        <div class="advice-head">
-          <div>
-            <h2 id="advice-heading">Raise your GPA</h2>
-            <p class="hint">How your GPA so far compares with your target, and the easiest ways to lift it.</p>
-          </div>
-          <label class="target-picker">
-            <span>My target GPA</span>
-            <input id="target-gpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" />
-          </label>
-        </div>
-        <p id="advice-status" class="advice-status" role="status" aria-live="polite"></p>
-        <div id="advice-plan"></div>
-        <div id="advice-weak"></div>
-      </section>
-
+      <!-- Heading, then what you need, then the breakdown: phones read it in this order; wide screens put
+           the result beside the breakdown. -->
       <div class="layout">
-        <section class="card" aria-labelledby="breakdown-heading">
+        <h2 id="editor-heading" class="editor-heading" tabindex="-1"></h2>
+        <section class="card result-card" aria-labelledby="goal-heading">
+          <h2 id="goal-heading">Your goal</h2>
+          <label class="goal-picker">
+            <span>I want at least</span>
+            <select id="goal-letter"></select>
+          </label>
+
+          <div id="result" class="result" role="status" aria-live="polite"></div>
+          <p id="standing" class="standing"></p>
+
+          <details id="glance" class="glance-details" hidden>
+            <summary>Every grade at a glance</summary>
+            <table class="glance">
+              <thead>
+                <tr>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Needed on remaining work</th>
+                </tr>
+              </thead>
+              <tbody id="glance-rows"></tbody>
+            </table>
+          </details>
+        </section>
+        <section class="card editor-card" aria-labelledby="breakdown-heading">
           <div class="course-fields">
             <div class="course-search">
               <label class="course-name">
@@ -251,32 +261,28 @@
           <div class="course-danger">
             <button id="delete-course" type="button" class="delete-button">Delete course</button>
           </div>
-        </section>
 
-        <section class="card result-card" aria-labelledby="goal-heading">
-          <h2 id="goal-heading">Your goal</h2>
-          <label class="goal-picker">
-            <span>I want at least</span>
-            <select id="goal-letter"></select>
-          </label>
-
-          <div id="result" class="result" role="status" aria-live="polite"></div>
-          <p id="standing" class="standing"></p>
-
-          <details id="glance" class="glance-details" hidden>
-            <summary>Every grade at a glance</summary>
-            <table class="glance">
-              <thead>
-                <tr>
-                  <th scope="col">Grade</th>
-                  <th scope="col">Needed on remaining work</th>
-                </tr>
-              </thead>
-              <tbody id="glance-rows"></tbody>
-            </table>
-          </details>
+          <!-- On phones this stays at the bottom of the screen while you edit, so a new score's effect shows
+               without scrolling up. Screen readers already hear the full result above. -->
+          <p id="editor-need" class="editor-need" aria-hidden="true"></p>
         </section>
       </div>
+
+      <section class="card advice" aria-labelledby="advice-heading">
+        <div class="advice-head">
+          <div>
+            <h2 id="advice-heading">Raise your GPA</h2>
+            <p class="hint">How your GPA so far compares with your target, and the easiest ways to lift it.</p>
+          </div>
+          <label class="target-picker">
+            <span>My target GPA</span>
+            <input id="target-gpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" />
+          </label>
+        </div>
+        <p id="advice-status" class="advice-status" role="status" aria-live="polite"></p>
+        <div id="advice-plan"></div>
+        <div id="advice-weak"></div>
+      </section>
 
       <section class="card" aria-labelledby="trend-heading">
         <h2 id="trend-heading">Grade over time</h2>
