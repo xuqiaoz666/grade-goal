@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-DAg_zBm2.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CxZZsCEL.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-CoLYk3E1.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-CcKG2vsh.css">
   </head>
   <body>
     <header class="app-header">
@@ -230,6 +230,21 @@
             Copy each category and its weight from the syllabus. Leave the score blank until it's graded.
             Dates are optional and feed the Upcoming page.
           </p>
+
+          <!-- Reads the syllabus PDF in the browser and shows what it found; nothing changes until "Use these". -->
+          <div class="syllabus-import">
+            <button id="import-syllabus" type="button" class="secondary-button">Import from syllabus PDF</button>
+            <input id="syllabus-file" type="file" accept="application/pdf,.pdf" hidden />
+            <p id="import-status" class="hint import-status" role="status"></p>
+            <div id="import-review" class="pick-preview import-review" role="group" aria-labelledby="import-review-title" hidden>
+              <p id="import-review-title" class="pick-preview-title"></p>
+              <div id="import-sections"></div>
+              <div class="pick-preview-actions">
+                <button id="import-apply" type="button" class="primary-button">Use these</button>
+                <button id="import-cancel" type="button" class="secondary-button">Cancel</button>
+              </div>
+            </div>
+          </div>
 
           <table class="categories">
             <thead>
