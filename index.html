@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-CBIZMyzK.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-zdoBwWra.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-TLP22SBu.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-BGdO9jyV.css">
   </head>
   <body>
     <header class="app-header">
@@ -33,7 +33,7 @@
           <a href="#grades" data-page="grades">Grades</a>
           <a href="#upcoming" data-page="upcoming">Upcoming</a>
           <a href="#whatif" data-page="whatif">What if</a>
-          <a href="#history" data-page="history">History</a>
+          <a href="#history" data-page="history">Semesters</a>
         </nav>
         <button id="theme-switch" type="button" class="theme-switch" aria-label="Switch to dark mode"></button>
       </div>
@@ -44,7 +44,7 @@
         <p><strong>Your saved grades couldn't be read, so the app started fresh.</strong></p>
         <p>
           Nothing was deleted: the old data is kept in this browser. Restore a backup on the
-          <a href="#history">History page</a> to get your grades back, or save a copy of the old data so it can be fixed.
+          <a href="#history">Semesters page</a> to get your grades back, or save a copy of the old data so it can be fixed.
         </p>
         <button id="save-unreadable" type="button" class="secondary-button">Save a copy of the old data</button>
       </section>
@@ -144,7 +144,7 @@
               <span id="overall-goal" class="gpa-value"></span>
             </div>
           </div>
-          <p class="hint"><span id="overall-note"></span> <a href="#history">Open History</a></p>
+          <p class="hint"><span id="overall-note"></span> <a href="#history">Open Semesters</a></p>
         </div>
       </section>
 
@@ -442,6 +442,40 @@
         </form>
         <p id="semester-error" class="form-error" role="alert"></p>
         <p id="history-summary" class="history-summary"></p>
+      </section>
+
+      <section class="card" aria-labelledby="taken-heading">
+        <h2 id="taken-heading">Courses I've taken</h2>
+        <p class="hint">
+          Finished courses, so planned courses can check their prerequisites. Courses on the Grades page count as
+          taken already.
+        </p>
+        <form id="add-taken" class="roadmap-add" novalidate>
+          <div class="course-search">
+            <input id="taken-search" type="text" placeholder="Search, e.g. CS 124" maxlength="60" autocomplete="off" aria-label="Add a course you've taken" />
+            <ul id="taken-suggestions" class="suggestions" hidden></ul>
+          </div>
+          <button type="submit" class="secondary-button">Add</button>
+        </form>
+        <p id="taken-error" class="form-error" role="alert"></p>
+        <ul id="taken-list" class="taken-list"></ul>
+        <p id="taken-empty" class="hint" hidden>None yet.</p>
+      </section>
+
+      <section class="card" aria-labelledby="planned-heading">
+        <h2 id="planned-heading">Planned semesters</h2>
+        <p class="hint">
+          The semesters ahead and the courses you plan for each, with prerequisites from the Fall 2026 catalog:
+          ✓ taken or planned earlier, ◐ planned the same semester, unmarked not yet planned. Read the "or" and
+          "one of" yourself.
+        </p>
+        <form id="add-planned" class="roadmap-add" novalidate>
+          <input id="new-planned-name" type="text" placeholder="e.g. Spring 2027" maxlength="40" aria-label="New planned semester name" />
+          <button type="submit" class="primary-button">Add semester</button>
+        </form>
+        <p id="planned-error" class="form-error" role="alert"></p>
+        <div id="planned-list" class="planned-list"></div>
+        <p id="planned-empty" class="hint" hidden>No planned semesters yet.</p>
       </section>
 
       <section id="backup" class="card backup" aria-labelledby="backup-heading">
