@@ -16,8 +16,8 @@
         // Storage or matchMedia blocked: src/theme.ts still sets the mode a moment later.
       }
     </script>
-    <script type="module" crossorigin src="/grade-goal/assets/index-TLP22SBu.js"></script>
-    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-BGdO9jyV.css">
+    <script type="module" crossorigin src="/grade-goal/assets/index-ChYlWIYe.js"></script>
+    <link rel="stylesheet" crossorigin href="/grade-goal/assets/index-hpwxvlyt.css">
   </head>
   <body>
     <header class="app-header">
@@ -198,29 +198,10 @@
                 <button id="pick-keep" type="button" class="secondary-button">Keep mine</button>
               </div>
             </div>
-            <label class="course-technical">
-              <input id="course-technical" type="checkbox" />
-              <span>Counts toward technical GPA</span>
-            </label>
-            <label class="course-syllabus">
-              <span>Syllabus link</span>
-              <input
-                id="course-syllabus"
-                type="url"
-                inputmode="url"
-                placeholder="Paste the course website or syllabus PDF link"
-                maxlength="500"
-                autocomplete="off"
-                spellcheck="false"
-                aria-describedby="syllabus-error"
-              />
-              <span id="syllabus-error" class="field-error" role="alert"></span>
-              <span id="syllabus-saved" class="field-saved" aria-live="polite"></span>
-            </label>
             <div class="course-links">
               <button id="course-description" type="button" class="row-link" aria-haspopup="dialog">Course description</button>
               <a id="open-syllabus" class="row-link" target="_blank" rel="noopener noreferrer" hidden>Open syllabus ↗</a>
-              <a id="find-syllabus" class="row-link" target="_blank" rel="noopener noreferrer" title="Search the web for this course's syllabus, then paste its link above" hidden>Find syllabus ↗</a>
+              <a id="find-syllabus" class="row-link" target="_blank" rel="noopener noreferrer" title="Search the web for this course's syllabus, then paste its link under More course settings" hidden>Find syllabus ↗</a>
             </div>
           </div>
 
@@ -260,28 +241,53 @@
           <button id="add-category" type="button" class="add-button">+ Add category</button>
           <p id="weight-total" class="weight-total" role="status"></p>
 
-          <div class="course-bonus">
-            <label for="course-bonus">Bonus on the final grade</label>
-            <span class="course-bonus-field">
-              <span aria-hidden="true">+</span>
-              <span class="with-unit">
-                <input id="course-bonus" type="number" inputmode="decimal" min="0" max="20" step="any" placeholder="0" aria-describedby="course-bonus-hint" />
-                <span aria-hidden="true">%</span>
+          <!-- Settings most courses never change, closed so the breakdown and result come first (2026-11-19). The
+               summary lists the ones a course uses, so a bonus or curve is never hidden without a trace. -->
+          <details id="more-settings" class="more-settings">
+            <summary>More course settings <span id="more-settings-used" class="more-settings-used"></span></summary>
+            <div class="more-settings-fields">
+              <label class="course-technical">
+                <input id="course-technical" type="checkbox" />
+                <span>Counts toward technical GPA</span>
+              </label>
+              <label class="course-syllabus">
+                <span>Syllabus link</span>
+                <input
+                  id="course-syllabus"
+                  type="url"
+                  inputmode="url"
+                  placeholder="Paste the course website or syllabus PDF link"
+                  maxlength="500"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="syllabus-error"
+                />
+                <span id="syllabus-error" class="field-error" role="alert"></span>
+                <span id="syllabus-saved" class="field-saved" aria-live="polite"></span>
+              </label>
+            </div>
+            <div class="course-bonus">
+              <label for="course-bonus">Bonus on the final grade</label>
+              <span class="course-bonus-field">
+                <span aria-hidden="true">+</span>
+                <span class="with-unit">
+                  <input id="course-bonus" type="number" inputmode="decimal" min="0" max="20" step="any" placeholder="0" aria-describedby="course-bonus-hint" />
+                  <span aria-hidden="true">%</span>
+                </span>
               </span>
-            </span>
-            <p id="course-bonus-hint" class="hint">
-              Extra credit added to the whole course grade, like +2% for course surveys. A curve on one test goes
-              under its score.
-            </p>
-          </div>
-
-          <details class="cutoffs">
-            <summary>Grade cutoffs and course curve</summary>
-            <p class="hint">
-              The lowest course percentage for each letter. Change these to match your syllabus, or lower them if
-              the whole course is curved, like A- at 88 instead of 90.
-            </p>
-            <div id="cutoff-grid" class="cutoff-grid"></div>
+              <p id="course-bonus-hint" class="hint">
+                Extra credit added to the whole course grade, like +2% for course surveys. A curve on one test goes
+                under its score.
+              </p>
+            </div>
+            <div class="cutoffs" role="group" aria-labelledby="cutoffs-heading">
+              <h3 id="cutoffs-heading" class="settings-heading">Grade cutoffs and course curve</h3>
+              <p class="hint">
+                The lowest course percentage for each letter. Change these to match your syllabus, or lower them if
+                the whole course is curved, like A- at 88 instead of 90.
+              </p>
+              <div id="cutoff-grid" class="cutoff-grid"></div>
+            </div>
           </details>
 
           <div class="course-danger">
@@ -293,22 +299,6 @@
           <p id="editor-need" class="editor-need" aria-hidden="true"></p>
         </section>
       </div>
-
-      <section class="card advice" aria-labelledby="advice-heading">
-        <div class="advice-head">
-          <div>
-            <h2 id="advice-heading">Raise your GPA</h2>
-            <p class="hint">How your GPA so far compares with your target, and the easiest ways to lift it.</p>
-          </div>
-          <label class="target-picker">
-            <span>My target GPA</span>
-            <input id="target-gpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" />
-          </label>
-        </div>
-        <p id="advice-status" class="advice-status" role="status" aria-live="polite"></p>
-        <div id="advice-plan"></div>
-        <div id="advice-weak"></div>
-      </section>
 
       <section class="card" aria-labelledby="trend-heading">
         <h2 id="trend-heading">Grade over time</h2>
@@ -418,6 +408,22 @@
           <p><strong>No GPA history yet.</strong></p>
           <p>Add a past semester below, or enter scores on the <a href="#grades">Grades page</a>.</p>
         </div>
+      </section>
+
+      <section class="card advice" aria-labelledby="advice-heading">
+        <div class="advice-head">
+          <div>
+            <h2 id="advice-heading">Raise your GPA</h2>
+            <p class="hint">How your GPA so far compares with your target, and the easiest ways to lift it.</p>
+          </div>
+          <label class="target-picker">
+            <span>My target GPA</span>
+            <input id="target-gpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" />
+          </label>
+        </div>
+        <p id="advice-status" class="advice-status" role="status" aria-live="polite"></p>
+        <div id="advice-plan"></div>
+        <div id="advice-weak"></div>
       </section>
 
       <section class="card" aria-labelledby="semesters-heading">
